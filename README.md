@@ -55,6 +55,8 @@ Since this was built on cloud platforms:
 
 ### ▶ Frontend
 - Open the Snack link above to test and edit the React Native app in-browser.
+⚠️ Make sure the backend server is running first before testing the app in Snack.
+The frontend relies on real-time API responses from the backend to display provider results.
 
 ### ▶ Backend
 - Visit the Replit link to run or inspect the backend server.
