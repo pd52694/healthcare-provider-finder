@@ -75,7 +75,7 @@ It includes your condition and ZIP code in the body:
   "zip": "10001"
 }
 ```
-## Step 2: The Server (Backend) Gets to Work
+### Step 2: The Server (Backend) Gets to Work
 
 1. 🧠 Maps your condition (like `"knee pain"`) to a specialty (like `"Physical Therapist"`).
 
@@ -88,7 +88,7 @@ https://npiregistry.cms.hhs.gov/api/?version=2.1&postal_code=10001&taxonomy_desc
 
 4. 📦 Otherwise, it returns up to 5 formatted results (name, address (in the form of a Google Maps link), and specialty)
 
-## Step 3: The App Displays Results
+### Step 3: The App Displays Results
 The frontend receives the list and shows it to you like:
 ```json
 [
@@ -110,7 +110,68 @@ To prevent overload or abuse:
 
 ---
 
+## Full App Data Flow:
+
++--------------------+       POST /providers        +------------------+
+|                    |  ─────────────────────────▶  |                  |
+|  📱 Mobile App     |                              |  🌐 Backend       |
+|  (React Native)    |  ◀─────────────────────────  |  (Express.js)    |
+|                    |     List of Providers        |                  |
++--------------------+                              +------------------+
+                                                           │
+                                                           ▼
+                                                 +----------------------+
+                                                 | NPI Registry API     |
+                                                 | (U.S. Gov database)  |
+                                                 +----------------------+
+                                                           │
+                                                           ▼
+                                                 Returns raw provider data
+
+
 ## Backend Logic Flow Diagram:
+        User Input
+     ("back pain", ZIP)
+            │
+            ▼
+ +-----------------------------+
+ | mapConditionToTaxonomy()   |
+ +-----------------------------+
+            │
+            ▼
+   Mapped to: "Chiropractor"
+            │
+            ▼
+ +-----------------------------+
+ | Query NPI Registry API     |
+ | with ZIP + specialty       |
+ +-----------------------------+
+            │
+            ▼
+     Any providers found?
+         ┌────────┐
+     ┌──▶│  Yes    │──────────────────────────────┐
+     │   └────────┘                              ▼
+     │                                 Return 0–5 Providers
+     │                                           ▲
+     │                                           │
+     │   ┌────────┐                              │
+     └──▶│   No    │──────────────────────────────┘
+         └────────┘
+             │
+             ▼
+   Try fallback: "Family Medicine"
+             │
+             ▼
+ +-----------------------------+
+ | Query NPI Registry API     |
+ | with ZIP + Family Medicine |
+ +-----------------------------+
+             │
+             ▼
+     Return 0–5 Providers
+
+---
 
 ## Running the App
 
