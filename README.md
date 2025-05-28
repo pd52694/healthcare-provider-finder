@@ -66,6 +66,7 @@ _(See full logic in `backend/index.js`, `mapConditionToTaxonomy()` function)_
 ### Step 1: You Tap “Search Providers”
 
 The frontend sends an **HTTP POST** request to the backend:
+`POST /providers`
 
 It includes your condition and ZIP code in the body:
 ```json
@@ -108,7 +109,7 @@ The frontend receives the response and shows it to you like:
 ```mermaid
 flowchart LR
     A["📱 Mobile App
-            (React Native)"] -->|POST/providers| B["🌐 Backend
+            (React Native)"] -->|POST /providers| B["🌐 Backend
                                                         (Express.js)"]
     B -->|List of Providers| A
     B --> C["NPI Registry API
