@@ -51,7 +51,7 @@ _(See full logic in `backend/index.js`, `mapConditionToTaxonomy()` function)_
 
 ## 📲 How to Use the App
 
-Imagine you have **knee pain** and live in ZIP code **10001**:
+Let's say you have **knee pain** and live in ZIP code **10001**:
 
 1. Open the app.
 2. Type “knee pain”.
