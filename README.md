@@ -115,8 +115,8 @@ To prevent overload or abuse:
 ```mermaid
 flowchart LR
     A["📱 Mobile App
-          (React Native)"] -->|POST/providers| B["🌐 Backend
-                                                     (Express.js)"]
+            (React Native)"] -->|POST/providers| B["🌐 Backend
+                                                        (Express.js)"]
     B -->|List of Providers| A
     B --> C["NPI Registry API
              (U.S. Gov Database)"]
@@ -147,7 +147,8 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A["User Input\n('back pain', ZIP)"] --> B["mapConditionToTaxonomy()"]
+    A["User Input
+       ('back pain', ZIP)"] --> B["mapConditionToTaxonomy()"]
     B --> C["Mapped to: 'Chiropractor'"]
     C --> D["Query NPI Registry API with ZIP and specialty"]
     D --> E{"Any providers found?"}
