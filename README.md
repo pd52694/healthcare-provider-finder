@@ -146,11 +146,11 @@ flowchart LR
 flowchart TD
     A["User Input\n('back pain', ZIP)"] --> B["mapConditionToTaxonomy()"]
     B --> C["Mapped to: 'Chiropractor'"]
-    C --> D["Query NPI Registry API\nZIP + specialty"]
+    C --> D["Query NPI Registry API with ZIP and specialty"]
     D --> E{"Any providers found?"}
     E -- Yes --> F["Return 0–5 Providers"]
     E -- No --> G["Try fallback: 'Family Medicine'"]
-    G --> H["Query NPI Registry API\nZIP + Family Medicine"]
+    G --> H["Query NPI Registry API with ZIP and Family Medicine"]
     H --> I["Return 0–5 Providers"]
 ```
 
