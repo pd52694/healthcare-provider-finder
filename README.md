@@ -127,10 +127,10 @@ flowchart TD
     B --> C["Mapped to: 'Chiropractor'"]
     C --> D["Query NPI Registry API with ZIP and specialty"]
     D --> E{"Any providers found?"}
-    E -- Yes --> F["Return 0–5 Providers"]
+    E -- Yes --> F["Returns 0–5 Providers"]
     E -- No --> G["Try fallback: 'Family Medicine'"]
     G --> H["Query NPI Registry API with ZIP and Family Medicine"]
-    H --> I["Return 0–5 Providers"]
+    H --> I["Returns 0–5 Providers"]
 ```
 
 ---
