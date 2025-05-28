@@ -184,7 +184,3 @@ Since this was built on cloud platforms:
 
 ### ▶ Backend
 - Visit the Replit link to run or inspect the backend server.
-- Or copy the code and run locally:
-  ```bash
-  npm install
-  node index.js
