@@ -66,6 +66,7 @@ _(See full logic in `backend/index.js`, `mapConditionToTaxonomy()` function)_
 ### Step 1: You Tap “Search Providers”
 
 The frontend sends an **HTTP POST** request to the backend:
+
 `POST /providers`
 
 It includes your condition and ZIP code in the body:
