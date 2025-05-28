@@ -114,7 +114,8 @@ To prevent overload or abuse:
 
 ```mermaid
 flowchart LR
-    A["📱 Mobile App\n(React Native)"] -->|POST /providers| B["🌐 Backend\n(Express.js)"]
+    A["📱 Mobile App
+          (React Native)"] -->|POST/providers| B["🌐 Backend\n(Express.js)"]
     B -->|List of Providers| A
     B --> C["NPI Registry API\n(U.S. Gov Database)"]
     C --> D["Returns raw provider data"]
