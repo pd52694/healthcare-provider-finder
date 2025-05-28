@@ -74,7 +74,7 @@ It includes your condition and ZIP code in the body:
   "condition": "knee pain",
   "zip": "10001"
 }
-
+```
 ## Step 2: The Server (Backend) Gets to Work
 
 1. 🧠 Maps your condition (like `"knee pain"`) to a specialty (like `"Physical Therapist"`).
@@ -83,7 +83,7 @@ It includes your condition and ZIP code in the body:
 
 ```perl
 https://npiregistry.cms.hhs.gov/api/?version=2.1&postal_code=10001&taxonomy_description=Physical%20Therapist
-
+```
 3. 🔁 If no providers are found, it retries using "Family Medicine" as a fallback.
 
 4. 📦 Formats the response with doctor name, address, specialty, and a Google Maps link.
@@ -93,13 +93,16 @@ The frontend receives the list and shows it to you like:
 ```pgsql
 Physical Therapist  
 123 Main St, New York, NY 10001
-
+```
 ## Rate Limiting:
 To prevent overload or abuse:
 - Users are limited to 30 searches per hour (based on IP address).
 - If exceeded, you’ll see:
 ```json
 { "error": "Rate limit exceeded. Please try again in an hour." }
+```
+
+---
 
 ## Running the App
 
