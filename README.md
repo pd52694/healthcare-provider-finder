@@ -111,7 +111,7 @@ To prevent overload or abuse:
 ---
 
 ## Full App Data Flow:
-
+```
 +--------------------+       POST /providers        +------------------+
 |                    |  ─────────────────────────▶  |                  |
 |  📱 Mobile App     |                              |  🌐 Backend       |
@@ -128,8 +128,10 @@ To prevent overload or abuse:
                                                            ▼
                                                  Returns raw provider data
 
+```
 
 ## Backend Logic Flow Diagram:
+```
         User Input
      ("back pain", ZIP)
             │
@@ -170,7 +172,7 @@ To prevent overload or abuse:
              │
              ▼
      Return 0–5 Providers
-
+```
 ---
 
 ## Running the App
