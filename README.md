@@ -112,7 +112,14 @@ To prevent overload or abuse:
 
 ## Full App Data Flow:
 
-<pre> ```mermaid flowchart LR A[📱 Mobile App<br>(React Native)] -->|POST /providers| B[🌐 Backend<br>(Express.js)] B -->|List of Providers| A B --> C[NPI Registry API<br>(U.S. Gov Database)] C --> D[Returns raw provider data] ``` </pre>
+```mermaid
+flowchart LR
+    A[📱 Mobile App<br>(React Native)] -->|POST /providers| B[🌐 Backend<br>(Express.js)]
+    B -->|List of Providers| A
+    B --> C[NPI Registry API<br>(U.S. Gov Database)]
+    C --> D[Returns raw provider data]
+```
+
 
 ```
 +--------------------+       POST/providers          +------------------+
