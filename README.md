@@ -24,7 +24,7 @@ A full-stack mobile app that helps users locate nearby healthcare providers base
 
 ## Tech Stack
 
-| Layer        | Technology                |
+| Layer        | Technology                 |
 |--------------|----------------------------|
 | Frontend     | React Native (Expo Snack)  |
 | Backend      | Node.js, Express.js        |
@@ -37,7 +37,7 @@ A full-stack mobile app that helps users locate nearby healthcare providers base
 
 Examples of smart backend condition mapping:
 
-| User Input      | Mapped Specialty       |
+| User Input       | Mapped Specialty       |
 |------------------|------------------------|
 | back pain        | Chiropractor           |
 | migraine         | Neurology              |
@@ -111,8 +111,11 @@ To prevent overload or abuse:
 ---
 
 ## Full App Data Flow:
+
+<pre> ```mermaid flowchart LR A[📱 Mobile App<br>(React Native)] -->|POST /providers| B[🌐 Backend<br>(Express.js)] B -->|List of Providers| A B --> C[NPI Registry API<br>(U.S. Gov Database)] C --> D[Returns raw provider data] ``` </pre>
+
 ```
-+--------------------+       POST /providers        +------------------+
++--------------------+       POST/providers          +------------------+
 |                    |  ─────────────────────────▶  |                  |
 |  📱 Mobile App     |                              |  🌐 Backend      |
 |  (React Native)    |  ◀─────────────────────────  |  (Express.js)    |
@@ -131,6 +134,9 @@ To prevent overload or abuse:
 ```
 
 ## Backend Logic Flow Diagram:
+
+<pre> ```mermaid flowchart TD A["User Input<br>('back pain', ZIP)"] --> B[mapConditionToTaxonomy()] B --> C["Mapped to: 'Chiropractor'"] C --> D[Query NPI Registry API<br>ZIP + specialty] D --> E{Any providers found?} E -- Yes --> F[Return 0–5 Providers] E -- No --> G["Try fallback: 'Family Medicine'"] G --> H[Query NPI Registry API<br>ZIP + Family Medicine] H --> I[Return 0–5 Providers] ``` </pre>
+
 ```
         User Input
      ("back pain", ZIP)
