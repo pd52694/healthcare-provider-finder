@@ -22,6 +22,18 @@ A full-stack mobile app that helps users locate nearby healthcare providers base
 
 ---
 
+## How to Use the App
+
+Let's say you have **knee pain** and live in ZIP code **10001**:
+
+1. Open the app.
+2. Type “knee pain”.
+3. Enter “10001”.
+4. Tap **Search Providers**.
+5. You'll see nearby **physical therapists** or relevant specialists.
+
+---
+
 ## Tech Stack
 
 | Layer        | Technology                 |
@@ -49,18 +61,6 @@ _(See full logic in `backend/index.js`, `mapConditionToTaxonomy()` function)_
 
 ---
 
-## 📲 How to Use the App
-
-Let's say you have **knee pain** and live in ZIP code **10001**:
-
-1. Open the app.
-2. Type “knee pain”.
-3. Enter “10001”.
-4. Tap **Search Providers**.
-5. You'll see nearby **physical therapists** or relevant specialists.
-
----
-
 ## 🔄 What Happens Behind the Scenes (HTTP Flow)
 
 ### Step 1: You Tap “Search Providers”
@@ -76,6 +76,7 @@ It includes your condition and ZIP code in the body:
 }
 ```
 ### Step 2: The Server (Backend) Gets to Work
+Backend processes condition and fetches providers:
 
 1. 🧠 Maps your condition (like `"knee pain"`) to a specialty (like `"Physical Therapist"`).
 
@@ -89,7 +90,7 @@ https://npiregistry.cms.hhs.gov/api/?version=2.1&postal_code=10001&taxonomy_desc
 4. 📦 Otherwise, it returns up to 5 formatted results (name, address (in the form of a Google Maps link), and specialty)
 
 ### Step 3: The App Displays Results
-The frontend receives the list and shows it to you like:
+The frontend receives the response and shows it to you like:
 ```json
 [
   {
@@ -100,17 +101,10 @@ The frontend receives the list and shows it to you like:
   }
 ]
 ```
-## Rate Limiting:
-To prevent overload or abuse:
-- Users are limited to 30 searches per hour (based on IP address).
-- If exceeded, you’ll see:
-```json
-{ "error": "Rate limit exceeded. Please try again in an hour." }
-```
 
 ---
 
-## Full App Data Flow:
+## Full App Data Flow Diagram:
 
 ```mermaid
 flowchart LR
@@ -136,6 +130,16 @@ flowchart TD
     E -- No --> G["Try fallback: 'Family Medicine'"]
     G --> H["Query NPI Registry API with ZIP and Family Medicine"]
     H --> I["Return 0–5 Providers"]
+```
+
+---
+
+## Rate Limiting:
+To prevent overload or abuse:
+- Users are limited to 30 searches per hour (based on IP address).
+- If exceeded, you’ll see:
+```json
+{ "error": "Rate limit exceeded. Please try again in an hour." }
 ```
 
 ---
