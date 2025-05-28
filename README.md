@@ -144,15 +144,16 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A["User Input\n(&#39;back pain&#39;, ZIP)"] --> B[mapConditionToTaxonomy()]
-    B --> C["Mapped to: &#39;Chiropractor&#39;"]
+    A["User Input\n('back pain', ZIP)"] --> B["mapConditionToTaxonomy()"]
+    B --> C["Mapped to: 'Chiropractor'"]
     C --> D["Query NPI Registry API\nZIP + specialty"]
-    D --> E{Any providers found?}
+    D --> E{"Any providers found?"}
     E -- Yes --> F["Return 0–5 Providers"]
-    E -- No --> G["Try fallback: &#39;Family Medicine&#39;"]
+    E -- No --> G["Try fallback: 'Family Medicine'"]
     G --> H["Query NPI Registry API\nZIP + Family Medicine"]
     H --> I["Return 0–5 Providers"]
 ```
+
 
 ```
         User Input
